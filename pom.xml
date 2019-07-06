@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hr</groupId>
+  <artifactId>hr-ecommerce</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>hr-ecommerce</name>
+  <description>ecommerce project</description>
+<modules>
+  	<module>hr-ecommerce-domainhr-ecommerce-domain</module>
+
+  	<module>hr-ecommerce-persistence</module>
+  	<module>hr-ecommerce-api</module>
+  	<module>hr-ecommerce-catalog</module>
+</modules>
+</project>
