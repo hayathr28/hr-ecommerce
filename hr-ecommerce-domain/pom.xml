@@ -9,4 +9,5 @@
   <artifactId>hr-ecommerce-domain</artifactId>
   <name>hr-ecommerce-domain</name>
   <description>ecommerce-domain</description>
+  <version>1.0.0</version>
 </project>
