@@ -11,6 +11,7 @@
   	<module>hr-ecommerce-persistence</module>
   	<module>hr-ecommerce-api</module>
   	<module>hr-ecommerce-catalog</module>
+  	<module>hr-ecommerce-core</module>
 </modules>
 <dependencies>
 <dependency>
@@ -23,6 +24,7 @@
    <artifactId>jackson-databind</artifactId>
    <version>2.9.6</version>
 </dependency>
+
  <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter</artifactId>

@@ -9,4 +9,13 @@
   <artifactId>hr-ecommerce-persistence</artifactId>
   <name>hr-ecommerce-persistence</name>
   <description>ecommerce-persistence</description>
+  <dependencies>
+  <dependency>
+   <groupId>com.hr.core</groupId>
+  <artifactId>hr-ecommerce-core</artifactId>
+  <version>1.0.0</version>
+  </dependency>
+  
+  
+  </dependencies>
 </project>

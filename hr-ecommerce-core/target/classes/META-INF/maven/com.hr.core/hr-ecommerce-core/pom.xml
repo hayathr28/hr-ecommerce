@@ -5,17 +5,8 @@
     <artifactId>hr-ecommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.hr.persistence</groupId>
-  <artifactId>hr-ecommerce-persistence</artifactId>
-  <name>hr-ecommerce-persistence</name>
-  <description>ecommerce-persistence</description>
-  <dependencies>
-  <dependency>
-   <groupId>com.hr.core</groupId>
+  <groupId>com.hr.core</groupId>
   <artifactId>hr-ecommerce-core</artifactId>
   <version>1.0.0</version>
-  </dependency>
-  
-  
-  </dependencies>
+  <name>hr-ecommerce-core</name>
 </project>
