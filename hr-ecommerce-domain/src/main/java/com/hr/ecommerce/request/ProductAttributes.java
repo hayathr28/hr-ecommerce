@@ -6,31 +6,31 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-"Dimensions",
+"dimensions",
 "color",
-"RAM",
+"ram",
 "chipset",
 "batteryCapacity"
 })
 public class ProductAttributes {
 
-@JsonProperty("Dimensions")
+@JsonProperty("dimensions")
 private String dimensions;
 @JsonProperty("color")
 private String color;
-@JsonProperty("RAM")
-private String rAM;
+@JsonProperty("ram")
+private String ram;
 @JsonProperty("chipset")
 private String chipset;
 @JsonProperty("batteryCapacity")
 private String batteryCapacity;
 
-@JsonProperty("Dimensions")
+@JsonProperty("dimensions")
 public String getDimensions() {
 return dimensions;
 }
 
-@JsonProperty("Dimensions")
+@JsonProperty("dimensions")
 public void setDimensions(String dimensions) {
 this.dimensions = dimensions;
 }
@@ -43,16 +43,6 @@ return color;
 @JsonProperty("color")
 public void setColor(String color) {
 this.color = color;
-}
-
-@JsonProperty("RAM")
-public String getRAM() {
-return rAM;
-}
-
-@JsonProperty("RAM")
-public void setRAM(String rAM) {
-this.rAM = rAM;
 }
 
 @JsonProperty("chipset")
@@ -73,6 +63,14 @@ return batteryCapacity;
 @JsonProperty("batteryCapacity")
 public void setBatteryCapacity(String batteryCapacity) {
 this.batteryCapacity = batteryCapacity;
+}
+@JsonProperty("ram")
+public String getRam() {
+	return ram;
+}
+@JsonProperty("ram")
+public void setRam(String ram) {
+	this.ram = ram;
 }
 
 }

@@ -13,8 +13,9 @@ import com.hr.ecommerce.request.CreateProductRequest;
 @RestController
 @RequestMapping(value = "/ecom/catalog", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CatalogController {
-	@Autowired
+    @Autowired
 	private EcomOperations ecomops;
+	
 	@PostMapping("/product")
 	public String createproduct(@RequestBody CreateProductRequest productrequest) throws Exception {
 		String response;
