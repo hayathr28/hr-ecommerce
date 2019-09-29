@@ -3,6 +3,6 @@ package com.hr.ecommerce.persistence.helper;
 import com.hr.ecommerce.model.Product;
 
 public interface PersistenceHelper {
-	public Product saveProduct(Product prod);
-
+	public Product saveProduct(Product prod) throws Exception;
+	public Product retrieveProduct(String productId) throws Exception;
 }
