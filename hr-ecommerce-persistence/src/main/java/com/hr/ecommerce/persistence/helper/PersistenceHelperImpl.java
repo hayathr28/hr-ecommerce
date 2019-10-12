@@ -1,7 +1,9 @@
 package com.hr.ecommerce.persistence.helper;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hr.ecommerce.model.Product;
@@ -23,6 +25,17 @@ public class PersistenceHelperImpl implements PersistenceHelper{
 		}
 		
 		return prod;
+	}
+
+	public Product retrieveProduct(String productCode) throws Exception {
+		
+		Optional<Product> response = prodrep.findById(productCode);
+		return response.get();
+	}
+	
+public Product findByProductCode(String productCode) throws Exception {
+	    List<Product>  products = prodrep.findByProductCode(productCode);
+		return (null!=products && !products.isEmpty()) ? products.get(0) : null;
 	}
 
 }

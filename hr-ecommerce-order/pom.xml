@@ -23,6 +23,11 @@
 			<artifactId>hr-ecommerce-core</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.hr.persistence</groupId>
+			<artifactId>hr-ecommerce-persistence</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 </project>
 

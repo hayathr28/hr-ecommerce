@@ -4,6 +4,6 @@ import com.hr.ecommerce.rquest.beans.AddToCartRequest;
 
 public interface OrderOperations {
 	
-	public String addToCart(AddToCartRequest addToCartRequest);
+	public String addToCart(AddToCartRequest addToCartRequest) throws Exception;
 
 }

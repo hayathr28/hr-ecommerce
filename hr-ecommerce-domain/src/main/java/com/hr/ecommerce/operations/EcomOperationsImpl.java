@@ -5,6 +5,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hr.ecommerce.model.Product;
 import com.hr.ecommerce.model.ProductAttributes;
 import com.hr.ecommerce.persistence.helper.PersistenceHelper;
@@ -19,9 +20,11 @@ public class EcomOperationsImpl implements EcomOperations {
 	@Autowired
 	private PersistenceHelper persistenceHelper;
 
-	public String retrieveProduct() {
+	public String retrieveProduct(String productCode) throws Exception {
 		
-		return null;
+		Product product = persistenceHelper.retrieveProduct(productCode);
+		
+		return new ObjectMapper().writeValueAsString(product);
 	}
 
 	public String saveProduct(CreateProductRequest productrequest) throws Exception {

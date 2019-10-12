@@ -1,5 +1,7 @@
 package com.hr.ecommerce.api.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,24 +15,22 @@ import com.hr.ecommerce.rquest.beans.AddToCartRequest;
 @RestController
 @RequestMapping(value = "/ecom/order", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OrderController {
-	
-	 @Autowired
-		private OrderOperations orderOps;
-		
-		@PostMapping("/addtocart")
-		public String addToCart(@RequestBody AddToCartRequest addToCartRequest) throws Exception {
-			String response;
-			try{
-				
-				
-				response = orderOps.addToCart(addToCartRequest);
-				
-			}
-			catch(Exception e){
-				throw e;
-			}
-			return response;
-			
+
+	@Autowired
+	private OrderOperations orderOps;
+
+	@PostMapping("/addtocart")
+	public String addToCart(@Valid @RequestBody AddToCartRequest addToCartRequest) throws Exception {
+		String response;
+		try {
+
+			response = orderOps.addToCart(addToCartRequest);
+
+		} catch (Exception e) {
+			throw e;
 		}
+		return response;
+
+	}
 
 }
