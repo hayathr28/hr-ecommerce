@@ -31,6 +31,10 @@ public class Product {
 	private String productImage;
 	@JsonProperty("description")
 	private String description;
+	@JsonProperty("buyable")
+	private boolean buyable;
+	@JsonProperty("inventory")
+	private String inventory;
 	@JsonProperty("productAttributes")
 	private ProductAttributes productAttributes;
 
@@ -92,6 +96,23 @@ public class Product {
 	@JsonProperty("productAttributes")
 	public void setProductAttributes(ProductAttributes productAttributes) {
 	this.productAttributes = productAttributes;
+	}
+	@JsonProperty("buyable")
+	public boolean isBuyable() {
+		return buyable;
+	}
+	@JsonProperty("buyable")
+	public void setBuyable(boolean buyable) {
+		this.buyable = buyable;
+	}
+
+	@JsonProperty("inventory")
+	public String getInventory() {
+		return inventory;
+	}
+	@JsonProperty("inventory")
+	public void setInventory(String inventory) {
+		this.inventory = inventory;
 	}
 
 	}
