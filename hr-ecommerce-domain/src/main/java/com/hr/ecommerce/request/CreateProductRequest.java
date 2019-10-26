@@ -31,7 +31,8 @@ private boolean buyable;
 private String inventory;
 @JsonProperty("productAttributes")
 private ProductAttributes productAttributes;
-
+@JsonProperty("price")
+private String price;
 @JsonProperty("productId")
 public String getProductId() {
 return productId;
@@ -108,6 +109,14 @@ public String getInventory() {
 @JsonProperty("inventory")
 public void setInventory(String inventory) {
 	this.inventory = inventory;
+}
+@JsonProperty("price")
+public String getPrice() {
+	return price;
+}
+@JsonProperty("price")
+public void setPrice(String price) {
+	this.price = price;
 }
 
 }

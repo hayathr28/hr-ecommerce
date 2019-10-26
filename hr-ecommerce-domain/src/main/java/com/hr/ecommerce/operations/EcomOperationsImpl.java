@@ -41,6 +41,7 @@ public class EcomOperationsImpl implements EcomOperations {
 		prod.setDescription(StringUtils.isNotEmpty(productrequest.getDescription())?productrequest.getDescription():"");
 		prod.setBuyable(productrequest.isBuyable());
 		prod.setInventory(StringUtils.isNotEmpty(productrequest.getInventory())?productrequest.getInventory():"");
+		prod.setPrice(StringUtils.isNotEmpty(productrequest.getPrice())?productrequest.getPrice():"");
 		prod.setProductAttributes(getProductAttributes(productrequest));
 		return prod;
 	}

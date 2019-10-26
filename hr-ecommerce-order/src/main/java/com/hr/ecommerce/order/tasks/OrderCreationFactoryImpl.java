@@ -33,7 +33,7 @@ public class OrderCreationFactoryImpl implements OrderCreationFactory {
 
 	private ItemInfo getItemInfo(Product product) {
 		ItemInfo itemInfo = new ItemInfo();
-	    itemInfo.setPrice("20.99");	
+	    itemInfo.setPrice(product.getPrice());	
 	    itemInfo.setProductCode(product.getProductCode());
 	    itemInfo.setQuantity("1");
 	    return itemInfo;

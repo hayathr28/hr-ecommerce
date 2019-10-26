@@ -37,7 +37,8 @@ public class Product {
 	private String inventory;
 	@JsonProperty("productAttributes")
 	private ProductAttributes productAttributes;
-
+	@JsonProperty("price")
+	private String price;
 	@JsonProperty("productId")
 	public String getProductId() {
 	return productId;
@@ -113,6 +114,14 @@ public class Product {
 	@JsonProperty("inventory")
 	public void setInventory(String inventory) {
 		this.inventory = inventory;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 	}
