@@ -2,6 +2,9 @@ package com.hr.ecommerce.order.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.bson.types.ObjectId;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,6 +43,10 @@ private String dateCreated;
 private String lastUpdated;
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+public OrderItem() {
+	this.orderItemId = ObjectId.get().toString();
+}
 
 @JsonProperty("recipientaddressId")
 public String getRecipientaddressId() {
