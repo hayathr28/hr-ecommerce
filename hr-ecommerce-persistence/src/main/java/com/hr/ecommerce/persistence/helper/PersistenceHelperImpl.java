@@ -54,4 +54,9 @@ public Order saveOrder(Order order) throws Exception {
 	return order;
 }
 
+public Order retrieveOrder(String orderId) throws Exception {
+	Optional<Order> response = orderRep.findById(new Long(orderId));
+	return response.get();
+}
+
 }

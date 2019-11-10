@@ -11,5 +11,7 @@ public interface PersistenceHelper {
 	public Product findByProductCode(String productCode) throws Exception;
 	
 	public Order saveOrder(Order order) throws Exception;
+	
+	public Order retrieveOrder(String orderId) throws Exception;
 
 }
