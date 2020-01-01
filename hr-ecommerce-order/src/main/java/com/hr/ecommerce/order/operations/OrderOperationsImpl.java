@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hr.ecommerce.common.HREcommerceErrorConstants;
 import com.hr.ecommerce.exception.HREcommerceExceptionFactory;
 import com.hr.ecommerce.model.Product;
+import com.hr.ecommerce.order.calculation.CalculateOrderTask;
 import com.hr.ecommerce.order.model.Address;
 import com.hr.ecommerce.order.model.Order;
 import com.hr.ecommerce.order.model.OrderItem;
@@ -30,8 +31,10 @@ public class OrderOperationsImpl implements OrderOperations {
 	@Autowired
 	private OrderCreationFactory orderFactory;
 	
+	@Autowired
+    private CalculateOrderTask calculateOrderTask;
 
-
+    
 	public String addToCart(AddToCartRequest addToCartRequest) throws Exception {
 		
 		/**
@@ -49,7 +52,7 @@ public class OrderOperationsImpl implements OrderOperations {
 		/**
 		 * If product is buyable then add it to cart
 		 */
-		Order order = orderFactory.addToCart(product);
+		Order order = orderFactory.addToCart(product,addToCartRequest);
 		
 		/**
 		 * Create an object of cart with product information.
@@ -107,6 +110,11 @@ public class OrderOperationsImpl implements OrderOperations {
 		}
 		Order order = persistenceHelper.retrieveOrder(orderId);
 		return new ObjectMapper().writeValueAsString(order);
+	}
+
+	public String calculateOrder(String orderId) throws Exception {
+		
+		return calculateOrderTask.calculateOrder(orderId);
 	}
 
 }

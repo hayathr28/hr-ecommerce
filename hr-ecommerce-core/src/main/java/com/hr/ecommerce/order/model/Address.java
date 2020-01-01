@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "address3",
 "city",
 "state",
-"zipCode",
+"pinCode",
 "country",
 "phoneNumber",
 "mobileNumber",
@@ -46,8 +46,8 @@ private String address3;
 private String city;
 @JsonProperty("state")
 private String state;
-@JsonProperty("zipCode")
-private String zipCode;
+@JsonProperty("pinCode")
+private String pinCode;
 @JsonProperty("country")
 private String country;
 @JsonProperty("phoneNumber")
@@ -149,14 +149,14 @@ public void setState(String state) {
 this.state = state;
 }
 
-@JsonProperty("zipCode")
-public String getZipCode() {
-return zipCode;
+@JsonProperty("pinCode")
+public String getPinCode() {
+return pinCode;
 }
 
-@JsonProperty("zipCode")
-public void setZipCode(String zipCode) {
-this.zipCode = zipCode;
+@JsonProperty("pinCode")
+public void setPinCode(String pinCode) {
+this.pinCode = pinCode;
 }
 
 @JsonProperty("country")

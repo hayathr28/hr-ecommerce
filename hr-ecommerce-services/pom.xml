@@ -9,30 +9,16 @@
 		<artifactId>hr-ecommerce</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.hr.order</groupId>
-	<artifactId>hr-ecommerce-order</artifactId>
+	<groupId>com.hr.services</groupId>
+	<artifactId>hr-ecommerce-services</artifactId>
 	<version>1.0.0</version>
-	<name>hr-ecommerce-order</name>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<name>hr-ecommerce-services</name>
+	<description>provides services supoort ecommerce application</description>
 	<dependencies>
 		<dependency>
 			<groupId>com.hr.core</groupId>
 			<artifactId>hr-ecommerce-core</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.hr.persistence</groupId>
-			<artifactId>hr-ecommerce-persistence</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.hr.services</groupId>
-			<artifactId>hr-ecommerce-services</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 	</dependencies>
 </project>
-
