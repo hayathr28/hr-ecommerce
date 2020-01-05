@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hr.ecommerce.order.operations.OrderOperations;
 import com.hr.ecommerce.rquest.beans.AddToCartRequest;
 import com.hr.ecommerce.rquest.beans.ShippingAddressReqBean;
+import com.hr.ecommerce.rquest.beans.SubmitOrderReqBean;
 
 @RestController
 @RequestMapping(value = "/ecom", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,6 +72,20 @@ public class OrderController {
 		try {
 
 			response = orderOps.calculateOrder(orderId);
+
+		} catch (Exception e) {
+			throw e;
+		}
+		return response;
+
+	}
+	
+	@PostMapping("order/{orderId}/submit")
+	public String submitOrder(@PathVariable("orderId") String orderId,@Valid @RequestBody SubmitOrderReqBean submitOrderReqBean) throws Exception {
+		String response;
+		try {
+
+			response = orderOps.submitOrder(orderId,submitOrderReqBean);
 
 		} catch (Exception e) {
 			throw e;

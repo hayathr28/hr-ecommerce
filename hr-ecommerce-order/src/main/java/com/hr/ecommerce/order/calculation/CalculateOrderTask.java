@@ -1,6 +1,7 @@
 package com.hr.ecommerce.order.calculation;
 
 import java.math.RoundingMode;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,21 +11,20 @@ import org.springframework.stereotype.Service;
 
 import com.hr.ecommerce.common.EnterpriseServices;
 import com.hr.ecommerce.common.HREcommerceErrorConstants;
+import com.hr.ecommerce.common.OrderStatusValidationUtil;
 import com.hr.ecommerce.common.OrderUtils;
 import com.hr.ecommerce.exception.HREcommerceExceptionFactory;
+import com.hr.ecommerce.order.common.DBUtils;
+import com.hr.ecommerce.order.model.Address;
 import com.hr.ecommerce.order.model.Order;
 import com.hr.ecommerce.order.model.OrderItem;
 import com.hr.ecommerce.order.model.ShippingCharge;
 import com.hr.ecommerce.order.model.Tax;
-import com.hr.ecommerce.persistence.helper.PersistenceHelper;
 import com.hr.ecommerce.shipping.ShippingChargeResponseBean;
 import com.hr.ecommerce.taxes.TaxResponseBean;
 
 @Service
 public class CalculateOrderTask {
-	
-	@Autowired
-	private PersistenceHelper persistenceHelper;
 	
 	@Autowired
 	private HREcommerceExceptionFactory exceptionFactory;
@@ -44,9 +44,14 @@ public class CalculateOrderTask {
 		 * Retrieve order from database
 		 */
 		if(StringUtils.isNotEmpty(orderId)){
-			order = persistenceHelper.retrieveOrder(orderId);
+			order = DBUtils.retrieveOrder(orderId);
 		}
 		if(null!=order) {
+			/**
+			 * 
+			 * validate order before processing it further
+			 */
+			validateOrder(order);
 			/**
 			 * Calculate Shipping
 			 */
@@ -59,7 +64,7 @@ public class CalculateOrderTask {
 			 Map<String,TaxResponseBean> taxes = enterpriseServices.calculateTaxes(order);
 			 processTaxes(order,taxes);
 			 order = prepareOrderTask.prepareOrder(order);
-			 persistenceHelper.saveOrder(order);
+			 DBUtils.saveOrder(order);
 			 
 		} else {
 			throw exceptionFactory.createException(HREcommerceErrorConstants.ERROR_ORDER_DOES_NOT_EXIST,new Object[] {orderId});
@@ -70,7 +75,29 @@ public class CalculateOrderTask {
 		
 		
 	}
+    
+	private void validateOrder(Order order) {
+		
+		 OrderStatusValidationUtil.isOrderInRightState(order);	
+	     List<OrderItem> orderItems = order.getOrderItems();
+	     if(null==orderItems || orderItems.isEmpty()) {
+	    	 throw exceptionFactory.createException(HREcommerceErrorConstants.ORDER_HAS_NO_ITEMS);
+	     }	 
+	      for(OrderItem orderItem : orderItems) {
+	    	  if(null==orderItem.getAddress() || hasPartialAddress(orderItem.getAddress())) 
+	    		  throw exceptionFactory.createException(HREcommerceErrorConstants.ITEM_HAS_INCOMPLETE_ADDRESS);  
+	      }
+		}
 
+		private boolean hasPartialAddress(Address address) {
+			
+			return StringUtils.isEmpty(address.getAddress1())
+					|| StringUtils.isEmpty(address.getCity())
+					|| StringUtils.isEmpty(address.getState())
+					|| StringUtils.isEmpty(address.getPinCode())
+					|| StringUtils.isEmpty(address.getFirstName())
+					|| StringUtils.isEmpty(address.getLastName());
+		}
 
 	private void processTaxes(Order order, Map<String, TaxResponseBean> taxes) {
 		if(taxes!=null) {

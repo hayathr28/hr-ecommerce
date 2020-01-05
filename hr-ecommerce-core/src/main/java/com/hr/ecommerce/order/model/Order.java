@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "orderId", "totalProduct", "totalShipping", "totalShippingDiscount", "totalNetShipping",
-		"totalDiscount", "totalTax", "totalBeforeTaxes", "orderTotal", "orderStatus", "orderItems", "customer" })
+		"totalDiscount", "totalTax", "totalBeforeTaxes", "orderTotal", "orderStatus", "orderItems", "customer","appliedPayments" })
 @Document(collection = "Order")
 public class Order {
 	@Transient
@@ -47,6 +47,9 @@ public class Order {
 	private List<OrderItem> orderItems = null;
 	@JsonProperty("customer")
 	private Customer customer;
+	@JsonProperty("appliedPayments")
+	private List<AppliedPayment> appliedPayments;
+	
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -178,6 +181,14 @@ public class Order {
 	@JsonAnySetter
 	public void setAdditionalProperty(String name, Object value) {
 		this.additionalProperties.put(name, value);
+	}
+	@JsonProperty("appliedPayments")
+	public List<AppliedPayment> getAppliedPayments() {
+		return appliedPayments;
+	}
+	@JsonProperty("appliedPayments")
+	public void setAppliedPayments(List<AppliedPayment> appliedPayments) {
+		this.appliedPayments = appliedPayments;
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hr.ecommerce.common.HREcommerceErrorConstants;
+import com.hr.ecommerce.common.OrderStatus;
 import com.hr.ecommerce.common.OrderUtils;
 import com.hr.ecommerce.exception.HREcommerceExceptionFactory;
 import com.hr.ecommerce.model.Product;
@@ -26,6 +27,7 @@ public class OrderCreationFactoryImpl implements OrderCreationFactory {
 	public Order addToCart(Product product,AddToCartRequest addToCartRequest) {
 		Order order = new Order();
 		order.setOrderItems(getOrderItem(order,product,addToCartRequest));
+		order.setOrderStatus(OrderStatus.PENDING.toString());
 		return order;
 		
 	}

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "recipientaddressId", "orderItemId", "itemInfo", "product", "address", "orderItemstatus",
-		"shippingCharge", "tax", "dateCreated", "lastUpdated" })
+		"shippingCharge", "tax", "discount", "dateCreated", "lastUpdated" })
 public class OrderItem {
 
 	@JsonProperty("recipientaddressId")
@@ -33,6 +33,8 @@ public class OrderItem {
 	private ShippingCharge shippingCharge;
 	@JsonProperty("tax")
 	private Tax tax;
+	@JsonProperty("discount")
+	private Discount discount;
 	@JsonProperty("dateCreated")
 	private String dateCreated;
 	@JsonProperty("lastUpdated")
@@ -150,6 +152,16 @@ public class OrderItem {
 	@JsonProperty("tax")
 	public void setTax(Tax tax) {
 		this.tax = tax;
+	}
+
+	@JsonProperty("discount")
+	public Discount getDiscount() {
+		return discount;
+	}
+
+	@JsonProperty("discount")
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
 	}
 
 }
