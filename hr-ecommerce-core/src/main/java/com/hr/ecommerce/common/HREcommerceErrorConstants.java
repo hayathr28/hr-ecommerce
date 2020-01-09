@@ -14,4 +14,5 @@ public class HREcommerceErrorConstants {
 	public static final String EXPIRED_CREDIT_CARD = "EXPIRED_CREDIT_CARD";
 	public static final String CVV_IS_REQUIRED = "CVV_IS_REQUIRED";
 	public static final String GIFT_CARD_IS_REQUIRED = "GIFT_CARD_IS_REQUIRED";
+	public static final String ORDER_ITEM_NOT_FOUND = "ORDER_ITEM_NOT_FOUND";
 }

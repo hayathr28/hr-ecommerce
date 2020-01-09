@@ -17,40 +17,41 @@ import com.hr.ecommerce.rquest.beans.ShippingAddressReqBean;
 
 @Service
 public class AddShippingTask {
-	
+
 	@Autowired
 	private HREcommerceExceptionFactory exceptionFactory;
-	
+
 	public String saveShippingAddress(String orderId, ShippingAddressReqBean shippingAddressBean) throws Exception {
-        Order order= DBUtils.retrieveOrder(orderId);
-        
-        OrderStatusValidationUtil.isOrderInRightState(order);
-		
-		if(null==order) {
-			throw exceptionFactory.createException(HREcommerceErrorConstants.ERROR_ORDER_DOES_NOT_EXIST,new Object[] {orderId});
+		Order order = DBUtils.retrieveOrder(orderId);
+
+		if (null == order) {
+			throw exceptionFactory.createException(HREcommerceErrorConstants.ERROR_ORDER_DOES_NOT_EXIST,
+					new Object[] { orderId });
 		}
-		OrderItem orderItem = getOrderItemFromOrder(shippingAddressBean.getOrderItemId(),order);
-		
-		if(null==orderItem) {
-			throw exceptionFactory.createException(HREcommerceErrorConstants.ERROR_ORDERITEM_DOES_NOT_EXIST,new Object[] {shippingAddressBean.getOrderItemId()});
+		OrderStatusValidationUtil.isOrderInRightState(order);
+		OrderItem orderItem = getOrderItemFromOrder(shippingAddressBean.getOrderItemId(), order);
+
+		if (null == orderItem) {
+			throw exceptionFactory.createException(HREcommerceErrorConstants.ERROR_ORDERITEM_DOES_NOT_EXIST,
+					new Object[] { shippingAddressBean.getOrderItemId() });
 		}
 		orderItem.setAddress(processAddress(shippingAddressBean.getShippingAddress()));
 		DBUtils.saveOrder(order);
 		return "SUCCESS";
 	}
-	
+
 	private OrderItem getOrderItemFromOrder(String orderItemId, Order order) {
-		
-		for(OrderItem orderItem : order.getOrderItems()) {
-			if(StringUtils.equalsIgnoreCase(orderItemId, orderItem.getOrderItemId()))
+
+		for (OrderItem orderItem : order.getOrderItems()) {
+			if (StringUtils.equalsIgnoreCase(orderItemId, orderItem.getOrderItemId()))
 				return orderItem;
 		}
-		
+
 		return null;
 	}
-	
+
 	private Address processAddress(ShippingAddress shippingAddress) {
-		Address address= new Address();
+		Address address = new Address();
 		BeanUtils.copyProperties(shippingAddress, address);
 		return address;
 	}

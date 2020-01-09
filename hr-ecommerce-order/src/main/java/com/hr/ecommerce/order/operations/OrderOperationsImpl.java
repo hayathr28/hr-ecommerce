@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hr.ecommerce.order.AddShippingTask;
 import com.hr.ecommerce.order.CreateOrderTask;
+import com.hr.ecommerce.order.RemoveOrderItemTask;
 import com.hr.ecommerce.order.RetrieveOrderTask;
 import com.hr.ecommerce.order.SubmitOrderTask;
 import com.hr.ecommerce.order.calculation.CalculateOrderTask;
 import com.hr.ecommerce.order.model.Order;
 import com.hr.ecommerce.rquest.beans.AddToCartRequest;
+import com.hr.ecommerce.rquest.beans.RemoveItemReqBean;
 import com.hr.ecommerce.rquest.beans.ShippingAddressReqBean;
 import com.hr.ecommerce.rquest.beans.SubmitOrderReqBean;
 
@@ -31,6 +33,9 @@ public class OrderOperationsImpl implements OrderOperations {
 	
 	@Autowired
 	private SubmitOrderTask submitOrderTask;
+	
+	@Autowired
+	private RemoveOrderItemTask removeOrderItemTask;
 
 	public String addToCart(AddToCartRequest addToCartRequest) throws Exception {
 
@@ -57,6 +62,11 @@ public class OrderOperationsImpl implements OrderOperations {
 	public String submitOrder(String orderId,SubmitOrderReqBean submitOrderReqBean) throws Exception {
 	
 		return submitOrderTask.submitOrder(orderId, submitOrderReqBean);
+	}
+
+	public String deleteOrderItem(String orderId, RemoveItemReqBean removeItemRequestBean) throws Exception {
+		
+		return removeOrderItemTask.deleteOrderItem(orderId, removeItemRequestBean);
 	}
 
 }

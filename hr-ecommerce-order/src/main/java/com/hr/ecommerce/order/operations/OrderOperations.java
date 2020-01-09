@@ -1,6 +1,7 @@
 package com.hr.ecommerce.order.operations;
 
 import com.hr.ecommerce.rquest.beans.AddToCartRequest;
+import com.hr.ecommerce.rquest.beans.RemoveItemReqBean;
 import com.hr.ecommerce.rquest.beans.ShippingAddressReqBean;
 import com.hr.ecommerce.rquest.beans.SubmitOrderReqBean;
 
@@ -37,5 +38,10 @@ public interface OrderOperations {
 	 * @throws Exception
 	 */
 	public String submitOrder(String orderId,SubmitOrderReqBean submitOrderReqBean) throws Exception;
+	/**
+	 * Removes item form order.
+	 * @throws Exception 
+	 */
+	public String deleteOrderItem(String orderId, RemoveItemReqBean removeItemRequestBean) throws Exception;
 
 }

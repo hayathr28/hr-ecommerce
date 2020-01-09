@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hr.ecommerce.order.operations.OrderOperations;
 import com.hr.ecommerce.rquest.beans.AddToCartRequest;
+import com.hr.ecommerce.rquest.beans.RemoveItemReqBean;
 import com.hr.ecommerce.rquest.beans.ShippingAddressReqBean;
 import com.hr.ecommerce.rquest.beans.SubmitOrderReqBean;
 
@@ -74,6 +76,21 @@ public class OrderController {
 			response = orderOps.calculateOrder(orderId);
 
 		} catch (Exception e) {
+			throw e;
+		}
+		return response;
+
+	}
+	
+	@DeleteMapping("order/{orderId}/delete")
+	public String deleteOrderItem(@PathVariable("orderId") String orderId, @Valid @RequestBody RemoveItemReqBean removeItemRequestBean) throws Exception {
+		String response;
+		try {
+
+			response = orderOps.deleteOrderItem(orderId,removeItemRequestBean);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 			throw e;
 		}
 		return response;
