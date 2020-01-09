@@ -20,7 +20,12 @@ public class EcomOperationsImpl implements EcomOperations {
 	@Autowired
 	private PersistenceHelper persistenceHelper;
 
-	
+	public String retrieveProduct(String productCode) throws Exception {
+		
+		Product product = persistenceHelper.retrieveProduct(productCode);
+		
+		return new ObjectMapper().writeValueAsString(product);
+	}
 
 	public String saveProduct(CreateProductRequest productrequest) throws Exception {
 		persistenceHelper.saveProduct(getProduct(productrequest));
@@ -34,6 +39,9 @@ public class EcomOperationsImpl implements EcomOperations {
 		prod.setProductName(StringUtils.isNotEmpty(productrequest.getProductName())?productrequest.getProductName():"");
 		prod.setProductImage(StringUtils.isNotEmpty(productrequest.getProductImage())?productrequest.getProductImage():"");
 		prod.setDescription(StringUtils.isNotEmpty(productrequest.getDescription())?productrequest.getDescription():"");
+		prod.setBuyable(productrequest.isBuyable());
+		prod.setInventory(StringUtils.isNotEmpty(productrequest.getInventory())?productrequest.getInventory():"");
+		prod.setPrice(StringUtils.isNotEmpty(productrequest.getPrice())?productrequest.getPrice():"");
 		prod.setProductAttributes(getProductAttributes(productrequest));
 		return prod;
 	}
@@ -49,12 +57,6 @@ public class EcomOperationsImpl implements EcomOperations {
 		targetAttributes.setRam(StringUtils.isNotEmpty(productrequest.getProductAttributes().getRam())?productrequest.getProductAttributes().getRam():"");
 		targetAttributes.setBatteryCapacity(StringUtils.isNotEmpty(productrequest.getProductAttributes().getBatteryCapacity())?productrequest.getProductAttributes().getBatteryCapacity():"");
 		return targetAttributes;
-	}
-
-	public String retrieveProduct(String productId) throws Exception {
-		return new ObjectMapper().writeValueAsString(persistenceHelper.retrieveProduct(productId));
-		
-
 	}
 
 }
